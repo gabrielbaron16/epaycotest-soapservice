@@ -1,13 +1,15 @@
 {
     "compilerOptions": {
-      "target": "esnext",
+      "target": "es6",
       "module": "commonjs",
       "sourceMap": true,
       "outDir": "./dist",
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
       "removeComments": true,
       "moduleResolution": "node",
       "noImplicitAny": false,
-      "strictNullChecks": true,
+      "strictNullChecks": false,
       "strictFunctionTypes": true,
       "noImplicitThis": true,
       "noUnusedLocals": true,
@@ -16,7 +18,6 @@
       "noFallthroughCasesInSwitch": true,
   
       //add decorator support
-      "allowSyntheticDefaultImports": false,
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true
     },

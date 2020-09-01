@@ -1,4 +1,7 @@
-import * as express from 'express';
+import './LoadEnv';
+import {createConnection} from "typeorm";
+import { typeOrmConfig } from './database';
+import express from "express";
 
 const app = express();
 
@@ -14,8 +17,14 @@ app.get('/api', (req, res, next) => {
 const port: Number = Number(process.env.PORT) || 3000;
 const startServer = async () => {
   await app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
+    console.log(`
+Server running on http://localhost:${port}
+`);
   });
 };
 
-startServer();
+console.log(process.env.DB_USER);
+
+createConnection(typeOrmConfig).then(async _connection => {
+    startServer();
+  }).catch((error) => console.log(error));
