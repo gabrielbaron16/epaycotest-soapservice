@@ -29,7 +29,7 @@ export const rechargeWallet = async (object: any) => {
         where: object.document});
         if (client.phone != object.phone)  
             throw new ErrorHandler(404, "Los Teléfonos no Coinciden");
-        client.balance = client.balance + object.value;
+        client.balance = + client.balance + Number(object.value);
         await clientRepository.save(client);
         return client;
     } catch (error){

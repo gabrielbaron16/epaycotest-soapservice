@@ -32,13 +32,13 @@ xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
    <part name = "balance" type = "xsd:number"/>
 </message>
 
-<message name = "GetWalletRequest">
+<message name = "GetBalanceRequest">
    <part name = "document" type = "xsd:string"/>
    <part name = "phone" type = "xsd:string"/>
    <part name = "auth_token" type = "xsd:string"/>
 </message>
 
-<message name = "GetWalletResponse">
+<message name = "GetBalanceResponse">
    <part name = "balance" type = "xsd:number"/>
 </message>
 
@@ -51,9 +51,9 @@ xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
       <input message = "tns:RechargeWalletRequest"/>
       <output message = "tns:RechargeWalletResponse"/>
    </operation>
-   <operation name = "getWallet">
-      <input message = "tns:GetWalletRequest"/>
-      <output message = "tns:GetWalletResponse"/>
+   <operation name = "getBalance">
+      <input message = "tns:GetBalanceRequest"/>
+      <output message = "tns:GetBalanceResponse"/>
    </operation>
 </portType>
 
@@ -92,8 +92,8 @@ xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
             use = "encoded"/>
       </output>
    </operation>
-   <operation name = "getWallet">
-      <soap:operation soapAction = "getWallet"/>
+   <operation name = "getBalance">
+      <soap:operation soapAction = "getBalance"/>
       <input>
          <soap:body
             encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
