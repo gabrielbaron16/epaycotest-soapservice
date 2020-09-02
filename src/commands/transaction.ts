@@ -1,6 +1,7 @@
 import { createTransaction, confirmTransaction, getTransaction } from "../dao/transaction";
 import { getClient, discountTransaction } from "../dao/client";
 import { ErrorHandler } from "../handlers/errorHandler";
+import { sendEmail } from "../email/email";
 import  crypto  from "crypto";
 
 export const createTransactionCommand = async (object: any) => {
@@ -22,6 +23,7 @@ export const createTransactionCommand = async (object: any) => {
         session_id : ses_id
       }     
       await createTransaction(transaction);
+      await sendEmail(tok, client.email);
       return transaction.session_id;
     } catch (e) {
       throw e;
