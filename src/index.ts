@@ -1,9 +1,15 @@
-import './LoadEnv';
 import {createConnection} from "typeorm";
 import { typeOrmConfig } from './database';
 import express from "express";
+import {soap} from 'express-soap';
+import { ClientXml } from './wsdl/client';
+import { TransactionXml } from './wsdl/transaction';
+import { ClientController } from './controllers/client';
+import { TransactionController } from './controllers/transaction'
 
 const app = express();
+app.use("/soap/client", soap({services:ClientController,wsdl:ClientXml}));
+app.use("/soap/transaction", soap({services:TransactionController,wsdl:TransactionXml}));
 
 //configure application routes
 //@GET - dummy api route
@@ -22,8 +28,6 @@ Server running on http://localhost:${port}
 `);
   });
 };
-
-console.log(process.env.DB_USER);
 
 createConnection(typeOrmConfig).then(async _connection => {
     startServer();

@@ -20,7 +20,7 @@ export class Client {
     name: string;
 
     @Column()
-    last_name: string;
+    lastName: string;
 
     @Column()
     phone: string;

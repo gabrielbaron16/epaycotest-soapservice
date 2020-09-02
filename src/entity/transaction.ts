@@ -7,9 +7,12 @@ export class Transaction {
     @PrimaryGeneratedColumn()
         id: Number;
 
-    @Column()
+    @Column( {unique: true, nullable: true})
         token: string;
     
+    @Column( {unique: true, nullable: true})
+        session_id: string;
+        
     @Column()
         value: Number;    
 

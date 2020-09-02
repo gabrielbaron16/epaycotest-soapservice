@@ -1,15 +1,16 @@
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
-import { Client } from './db/entity/client';
-import { Transaction } from './db/entity/transaction';
+import { Client } from './entity/client';
+import { Transaction } from './entity/transaction';
+import { db } from './constants/dbVariables';
 
 
 const typeOrmConfig: MysqlConnectionOptions = {
     type: "mysql",
-    host: "localhost",
+    host: db.host,
     port: 3306,
-    username: "mysql",
-    password: "mysql",
-    database: "epayco",
+    username: db.username,
+    password: db.password,
+    database: db.database,
     entities: [
         Client,
         Transaction
