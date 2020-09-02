@@ -22,11 +22,11 @@ export const createClient = async (client: any) => {
     }    
 }
 
-export const rechargeWallet = async (object: any) => {
+export const rechargeWallet = async (criteria: any, object: any) => {
     try {
         const clientRepository = getManager().getRepository(Client);
         let client = await clientRepository.findOne({
-        where: object.document});
+        where: criteria}); 
         if (client.phone != object.phone)  
             throw new ErrorHandler(404, "Los Teléfonos no Coinciden");
         client.balance = + client.balance + Number(object.value);

@@ -10,7 +10,7 @@ export const createClientCommand = async (client: any) => {
 
 export const rechargeWalletCommand = async (object: any) => {
     try {
-      const client = await rechargeWallet(object);
+      const client = await rechargeWallet({document: object.document}, object);
       return client.balance;
     } catch (e) {
       throw e;
