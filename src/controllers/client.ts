@@ -1,13 +1,13 @@
 import { createClientCommand, rechargeWalletCommand, getBalanceCommand } from '../commands/client';
 import { ErrorHandler } from '../handlers/errorHandler';
-import { app } from '../constants/appVariable';
+import { application } from '../constants/appVariable';
 export const ClientController = {
   Client_Service: {
     Client_Port: {
       createClient: async function (args : any , cb : any) {
         try {
           const auth_token = args.auth_token.$value;
-          if(auth_token != app.auth_token) throw new ErrorHandler(401, 'No Está Autorizado');
+          if(auth_token != application.auth_token) throw new ErrorHandler(401, 'No Está Autorizado');
           const client  = {
             document: args.document.$value,
             name : args.name.$value,
@@ -47,7 +47,7 @@ export const ClientController = {
             value : args.value.$value
           };
           const auth_token = args.auth_token.$value;
-          if(auth_token != app.auth_token) throw new ErrorHandler(401, 'No Está Autorizado');
+          if(auth_token != application.auth_token) throw new ErrorHandler(401, 'No Está Autorizado');
           const data = await rechargeWalletCommand(object);
           return {
             balance: data,
@@ -69,7 +69,7 @@ export const ClientController = {
         }
         try {
           const auth_token = args.auth_token.$value;
-          if(auth_token != app.auth_token) throw new ErrorHandler(401, 'No Está Autorizado');
+          if(auth_token != application.auth_token) throw new ErrorHandler(401, 'No Está Autorizado');
           const data = await getBalanceCommand(object);
           return {
             balance: data,

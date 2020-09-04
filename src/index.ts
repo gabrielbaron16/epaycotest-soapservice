@@ -1,3 +1,4 @@
+import { application } from "./constants/appVariable";
 import {createConnection} from "typeorm";
 import { typeOrmConfig } from './database';
 import express from "express";
@@ -20,7 +21,7 @@ app.get('/api', (req, res, next) => {
   });
 });
 
-const port: Number = Number(process.env.PORT) || 3000;
+const port: Number = Number(application.port) || 3000;
 const startServer = async () => {
   await app.listen(port, () => {
     console.log(`

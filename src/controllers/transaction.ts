@@ -1,6 +1,6 @@
 import { createTransactionCommand, confirmTransactionCommand } from "../commands/transaction";
 import { ErrorHandler } from "../handlers/errorHandler";
-import { app } from "../constants/appVariable";
+import { application } from "../constants/appVariable";
 
 export const TransactionController = {
   Transaction_Service: {
@@ -13,7 +13,7 @@ export const TransactionController = {
             value: args.value.$value
           };
           const auth_token = args.auth_token.$value;
-          if (auth_token != app.auth_token)
+          if (auth_token != application.auth_token)
             throw new ErrorHandler(401, "No está Autorizado");
           const session_id = await createTransactionCommand(object);
           return {
@@ -36,7 +36,7 @@ export const TransactionController = {
         };  
         try {
           const auth_token = args.auth_token.$value;
-          if (auth_token != app.auth_token)
+          if (auth_token != application.auth_token)
             throw new ErrorHandler(401, "No está Autorizado");
           await confirmTransactionCommand(object);
           return {
